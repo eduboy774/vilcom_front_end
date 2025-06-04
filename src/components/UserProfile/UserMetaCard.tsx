@@ -3,9 +3,22 @@ import { Modal } from "../ui/modal";
 import Button from "../ui/button/Button";
 import Input from "../form/input/InputField";
 import Label from "../form/Label";
+import { useUserContext } from "../../store/userContext";
+import { useEffect } from "react";
 
 export default function UserMetaCard() {
   const { isOpen, openModal, closeModal } = useModal();
+
+  const { userProfileAndRoleData } = useUserContext();
+
+
+  useEffect(()=>{
+  },
+    [userProfileAndRoleData]);
+  
+
+
+
   const handleSave = () => {
     // Handle save logic here
     console.log("Saving changes...");
@@ -21,15 +34,17 @@ export default function UserMetaCard() {
             </div>
             <div className="order-3 xl:order-2">
               <h4 className="mb-2 text-lg font-semibold text-center text-gray-800 dark:text-white/90 xl:text-left">
-                Musharof Chowdhury
+                {userProfileAndRoleData?.data?.userProfile?.userFirstName} {userProfileAndRoleData?.data?.userProfile?.userLastName}
               </h4>
               <div className="flex flex-col items-center gap-1 text-center xl:flex-row xl:gap-3 xl:text-left">
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Team Manager
+                  {userProfileAndRoleData?.data?.userProfile?.profileGender}
                 </p>
                 <div className="hidden h-3.5 w-px bg-gray-300 dark:bg-gray-700 xl:block"></div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Arizona, United States
+                  {userProfileAndRoleData?.data?.userProfile?.profileIsActive}
+                {userProfileAndRoleData?.data?.userProfile?.profileIsActive  ===  true  ? 'Active' : 'Not Active'}
+
                 </p>
               </div>
             </div>

@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router";
 import { toast } from 'react-toastify';
 import { getUserProfileAndRole } from "../../services/userService";
+import { useUserContext } from "../../store/userContext";
 
 export function useSignIn() {
   const navigate = useNavigate()
   const notifyError = () => toast.error("Invalid credentials");
   const notifySuccess = () => toast.success("Login successful");
+  const { setUserProfileAndRoleData } = useUserContext();
 
   const authenticate = async (username: string, password: string) => {
     const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
@@ -38,7 +40,9 @@ export function useSignIn() {
         localStorage.setItem("accessToken", accessToken);
         notifySuccess();
         try {
-            await getUserProfileAndRole(accessToken);
+
+             await getUserProfileAndRole(accessToken, setUserProfileAndRoleData);
+
             } catch (e) {
              console.error("Error after login while fetching profile data:", e);
             }

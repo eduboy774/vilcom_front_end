@@ -3,10 +3,17 @@ import { Modal } from "../ui/modal";
 import Button from "../ui/button/Button";
 import Input from "../form/input/InputField";
 import Label from "../form/Label";
+import { useUserContext } from "../../store/userContext";
+import { useEffect } from "react";
 
 
 export default function UserInfoCard() {
   const { isOpen, openModal, closeModal } = useModal();  
+   const { userProfileAndRoleData } = useUserContext();
+
+  useEffect(() => {
+  }, [userProfileAndRoleData]);
+  
   const handleSave = () => {
     // Handle save logic here
     console.log("Saving changes...");
@@ -20,13 +27,13 @@ export default function UserInfoCard() {
             Personal Information
           </h4>
 
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-7 2xl:gap-x-32">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-5 lg:gap-7 2xl:gap-x-32">
             <div>
               <p className="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
                 First Name
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                Musharof
+                {userProfileAndRoleData?.data?.userProfile?.userFirstName}
               </p>
             </div>
 
@@ -35,7 +42,7 @@ export default function UserInfoCard() {
                 Last Name
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                Chowdhury
+                {userProfileAndRoleData?.data?.userProfile?.userLastName}
               </p>
             </div>
 
@@ -44,7 +51,7 @@ export default function UserInfoCard() {
                 Email address
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                randomuser@pimjo.com
+                 {userProfileAndRoleData?.data?.userProfile?.userEmail}
               </p>
             </div>
 
@@ -53,16 +60,16 @@ export default function UserInfoCard() {
                 Phone
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                +09 363 398 46
+                {userProfileAndRoleData?.data?.userProfile?.profilePhone}
               </p>
             </div>
 
             <div>
               <p className="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
-                Bio
+                Gender
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                Team Manager
+                 {userProfileAndRoleData?.data?.userProfile?.profileGender}
               </p>
             </div>
           </div>

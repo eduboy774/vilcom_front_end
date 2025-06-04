@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { Dropdown } from "../ui/dropdown/Dropdown";
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
+import { useUserContext } from "../../store/userContext";
 
 export default function UserDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  
+  const { userProfileAndRoleData } = useUserContext();
 
+  useEffect(() => {
+    console.log('User Profile and Role Data:', userProfileAndRoleData);
+  }, [userProfileAndRoleData]);
+ 
 
   function toggleDropdown() {
     setIsOpen(!isOpen);
@@ -31,7 +38,7 @@ export default function UserDropdown() {
           <img src="/images/user/owner.jpg" alt="User" />
         </span>
 
-        <span className="block mr-1 font-medium text-theme-sm">Musharof</span>
+        <span className="block mr-1 font-medium text-theme-sm">{userProfileAndRoleData?.data.userProfile.userFirstName}</span>
         <svg
           className={`stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""

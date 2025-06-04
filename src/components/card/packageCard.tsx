@@ -29,7 +29,12 @@ export default function PackageCard({ pkg, onDelete }: PackageCardProps) {
         </span>
         <button
           onClick={() => onDelete(pkg.uuid)}
-          className="rounded bg-red-500 px-2 py-1 text-white hover:bg-red-500"
+          className="
+          rounded 
+          bg-red-500 
+          px-2 py-1 
+          text-white 
+          hover:bg-red-500"
         >
           Delete
         </button>
