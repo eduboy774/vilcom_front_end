@@ -16,6 +16,7 @@ export default function VilcomPackages() {
   const {isOpen, openModal, closeModal } = useModal();  
   const [message, setMessage] = useState("");
   const [packageName, setPackageName] = useState("");
+  const [attachment, setAttachment] = useState<any>(null);
   const [packages, setPackages] = useState<VilcomPackage[]>([]);
   const [createPackage] = useMutation<CreateVilcomPackageMutation, CreatePackageVars>(CREATE_VILCOM_PACKAGE);
   const [deletePackage] = useMutation(ACTIVATE_OR_DEACTIVATE_PACKAGE);
@@ -172,6 +173,8 @@ const { loading:LoadingPackage,error:PackageError, data:PackageData } = useQuery
       setPackageName={setPackageName}
       message={message}
       setMessage={setMessage}
+      attachment ={attachment}
+      setAttachment ={setAttachment}
       onSave={handleSave}
       />
     </div>

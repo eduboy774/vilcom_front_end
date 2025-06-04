@@ -21,6 +21,7 @@ export interface VilcomPackageInputObject {
   uuid?: string | null;
   packageName?: string | null;
   packageDescription?: string | null;
+  packagePhoto?: string | null;
 }
 
 export interface CreatePackageVars {

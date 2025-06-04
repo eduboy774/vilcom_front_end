@@ -3,6 +3,7 @@ import Button from "../../../components/ui/button/Button";
 import Input from "../../../components/form/input/InputField";
 import Label from "../../../components/form/Label";
 import TextArea from "../../../components/form/input/TextArea";
+import FileInputExample from "../../../components/form/form-elements/FileInputExample";
 
 type PackageModalProps = {
   isOpen: boolean;
@@ -11,6 +12,8 @@ type PackageModalProps = {
   setPackageName: (val: string) => void;
   message: string;
   setMessage: (val: string) => void;
+  attachment:any;
+  setAttachment:(val:string) => void;
   onSave: () => void;
 };
 
@@ -21,8 +24,14 @@ export default function PackageModal({
   setPackageName,
   message,
   setMessage,
+  attachment,
+  setAttachment,
   onSave,
 }: PackageModalProps) {
+
+  const handleFileUpload = (uploadedAttachment: any) => {
+    setAttachment(uploadedAttachment);
+  };
   return (
     <Modal isOpen={isOpen} onClose={onClose} className="max-w-[700px] m-4">
       <div className="no-scrollbar relative w-full max-w-[700px] overflow-y-auto rounded-3xl bg-white p-4 dark:bg-gray-900 lg:p-11">
@@ -49,6 +58,9 @@ export default function PackageModal({
                   onChange={(val) => setMessage(val)}
                   rows={2}
                 />
+              </div>
+              <div className="col-span-2">
+              <FileInputExample onFileUpload={handleFileUpload} />
               </div>
             </div>
           </div>

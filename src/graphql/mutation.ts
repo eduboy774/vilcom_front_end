@@ -118,3 +118,19 @@ mutation DeleteVilcomPackageMutation($uuid: String) {
   }
 }
 `
+
+
+export const UPLOAD_SINGLE_FILE = gql
+`
+mutation UploadSingleFile($input: Base64StringInputObjects) {
+  uploadSingleFile(input: $input) {
+    response {
+      id
+      status
+      code
+      message
+    }
+    attachmentPath 
+  }
+}
+`
